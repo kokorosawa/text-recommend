@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Llama Chat Assistant",
+  "version": "1.0",
+  "description": "使用 Llama 3.2 1B 模型的聊天助手",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "http://localhost:11434/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "extension/content.js"
+      ],
+      "css": [
+        "extension/static/style.css"
+      ]
+    }
+  ]
+}
