@@ -2,14 +2,19 @@
 
 A Chrome extension that provides intelligent next word and sentence recommendations while typing.
 
-
-
 ## ✨ Features
 - Real-time text suggestions
 - Context-aware recommendations
 - Powered by Ollama LLM
 - Works across all text input fields
 - Privacy-focused: processes text locally
+
+## ⚙️ Configuration
+you can change the config in .env to change LLM model and ollama api url
+```
+model="llama3.2:3b"
+ollama_url="http://localhost:11434"
+```
 
 ## 🚀 Installation
 
@@ -46,6 +51,6 @@ click other area to cancel
 # 🤝 Contributing
 PRs welcome! 
 
-# future
-using self rag or crag to improve the recommend word
+# TODO
+- [ ] using self rag or crag to improve the recommend word
 
