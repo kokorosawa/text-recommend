@@ -43,8 +43,10 @@ python -m uvicorn --app-dir local_api app:app --reload --port 8080
 # 💡 Usage
 Press ⌘ + I (Mac) or Ctrl + I (Windows) in any text input(here using llama3.2:3b)
 ![Text-Recommend Demo1](./pic1.png)
+
 Select suggestions using arrow keys
 ![Text-Recommend Demo2](./pic2.png)
+
 click bar to apply suggestion
 click other area to cancel 
 
