@@ -40,6 +40,8 @@ OLLAMA_ORIGINS=chrome-extension://* ollama serve
 python -m uvicorn --app-dir local_api app:app --reload --port 8080
 ```
 
+4. add extension as develop mode in to chrome or the browser using Chromium 
+
 # 💡 Usage
 Press ⌘ + I (Mac) or Ctrl + I (Windows) in any text input(here using llama3.2:3b)
 ![Text-Recommend Demo1](./pic1.png)
