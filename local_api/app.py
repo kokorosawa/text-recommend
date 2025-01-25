@@ -1,31 +1,28 @@
 import os
 from fastapi import FastAPI, HTTPException
 from langchain_ollama import OllamaEmbeddings
-import uvicorn
 from langchain_chroma import Chroma
 from chromadb.config import Settings
 from langchain_core.documents import Document
 from datetime import datetime
-import chromadb
 from schemas.TextItem import TextItem
 from langchain_ollama import OllamaLLM
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 
 app = FastAPI()
 
+load_dotenv()
+model = os.getenv("model")
+ollama_url = os.getenv("ollama_url")
+
 Embedding_Model = "all-minilm:latest"
 vector_store = Chroma(
     collection_name="plugin",
-    embedding_function=OllamaEmbeddings(
-        model=Embedding_Model, base_url="http://localhost:11434"
-    ),
+    embedding_function=OllamaEmbeddings(model=Embedding_Model, base_url=ollama_url),
     client_settings=Settings(),
 )
 
-load_dotenv()
-model = os.getenv("model")
 llm = OllamaLLM(model=model, num_gpu=1)
 
 

@@ -29,14 +29,13 @@ function showSuggestions(suggestion, inputElement) {
 
   // Position the suggestion box blow the input element
   const rect = inputElement.getBoundingClientRect();
-  console.log(rect);
 
   suggestionBox.style.top = `${rect.top + rect.height}px`;
   suggestionBox.style.left = `${rect.left}px`;
   suggestionBox.style.width = `${rect.width}px`;
 
   suggestionBox.onclick = () => {
-    inputElement.value = currentText + suggestion;
+    inputElement.value = suggestion;
     suggestionBox.style.display = 'none';
     currentSuggestion = null;
   };
@@ -45,27 +44,20 @@ function showSuggestions(suggestion, inputElement) {
 // 使用防抖包裝事件監聽器
 const debouncedInputHandler = debounce(function (e) {
   const text = e.target.value;
-  console.log('Input text:', text);
 
   // Send text to server
   chrome.runtime.sendMessage({ action: 'sendText', text: text }, response => {
-    if (response && response.error) {
+    if (response.error) {
       console.error('Error sending text:', response.error);
-    } else {
-      console.log('Text sent successfully:', response);
     }
   });
 
   document.addEventListener('keydown', function (k) {
     if (k.metaKey && k.key === 'i') {
-      console.log('Command + I pressed');
-      console.log(e.target.value);
-
       chrome.runtime.sendMessage({ action: 'recommend', text: e.target.value }, response => {
-        if (response && response.error) {
+        if (response.error) {
           console.error('Error sending text:', response.error);
         } else {
-          console.log('Text sent successfully:', response);
           showSuggestions(response, e.target);
         }
       });
